@@ -87,7 +87,7 @@ const CustomButton = () => {
             top: `${pos.y}vh`,
             left: `${pos.x}vw`,
             width: 'max-content',
-            maxWidth: `${width}px`,
+            maxWidth: `max(${width}px, ${100 - pos.x - 1}vw)`,
             zIndex: 9999999999,
             maxHeight: `calc(100vh - ${pos.y}vh - 50px)`,
             overflowY: 'auto'
