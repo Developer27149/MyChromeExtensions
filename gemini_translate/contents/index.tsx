@@ -15,8 +15,10 @@ const CustomButton = () => {
   const [hidden, setHidden] = useState(true)
   const [result, setResult] = useState("")
   const [pos, setPos] = useState({ x: -100, y: -100 })
+  const [width, setWidth] = useState(0)
   const [selectedText, setSelectedText] = useState("")
   const [loading, setLoading] = useState(false)
+
 
   const onTranslate = async () => {
     try {
@@ -46,7 +48,8 @@ const CustomButton = () => {
         setSelectedText(selectedText)
         const range = selection.getRangeAt(0)
         const rect = range.getBoundingClientRect()
-        let { left, bottom, top } = rect
+        let { left, bottom,right } = rect 
+        setWidth(right - left)
         // 计算位置的百分比
         left = (left / window.innerWidth) * 100
         bottom = ((bottom + 12) / window.innerHeight) * 100
@@ -70,10 +73,12 @@ const CustomButton = () => {
         style={{
           top: `${pos.y}vh`,
           left: `${pos.x}vw`,
-          zIndex: 9999999
+          zIndex: 9999999999
         }}
         onClick={onTranslate}>
-        <img src={icon} className="w-5 h-5" />
+        {
+          hidden && <img src={icon} className="w-5 h-5" />
+        }
       </div>
       {!hidden && (
         <div
@@ -81,13 +86,16 @@ const CustomButton = () => {
           style={{
             top: `${pos.y}vh`,
             left: `${pos.x}vw`,
-            zIndex: 9999999,
-            maxWidth: "600px"
+            width: 'max-content',
+            maxWidth: `${width}px`,
+            zIndex: 9999999999,
+            maxHeight: `calc(100vh - ${pos.y}vh - 50px)`,
+            overflowY: 'auto'
           }}>
           {loading ? (
             <div className="w-4 h-4 transition-all bg-blue-100 rounded-sm animation-ping"></div>
           ) : (
-            <div dangerouslySetInnerHTML={{ __html: result }}></div>
+            <div className="w-full" dangerouslySetInnerHTML={{ __html: result }}></div>
           )}
         </div>
       )}
