@@ -2,8 +2,9 @@ import icon from "data-base64:~assets/icon.png"
 import cssText from "data-text:~style.css"
 import marked from "marked"
 import { useEffect, useState } from "react"
+import Highlight from "react-highlight"
 
-import { Util } from "~utils"
+import { sendToBackground } from "@plasmohq/messaging"
 
 export const getStyle = () => {
   const style = document.createElement("style")
@@ -14,19 +15,23 @@ export const getStyle = () => {
 const CustomButton = () => {
   const [hidden, setHidden] = useState(true)
   const [result, setResult] = useState("")
+  const [iconPos, setIconPos] = useState({ x: -100, y: -100 })
   const [pos, setPos] = useState({ x: -100, y: -100 })
   const [width, setWidth] = useState(0)
   const [selectedText, setSelectedText] = useState("")
   const [loading, setLoading] = useState(false)
-
 
   const onTranslate = async () => {
     try {
       setLoading(true)
       // 在这里可以执行针对选中文本的操作
       setHidden(false)
-      const res = await Util.getTranslatedText(selectedText)
-      const html = await marked.parse(res)
+      const { html } = await sendToBackground({
+        name: "ask",
+        body: {
+          selectedText
+        }
+      })
       setResult(html)
     } catch (error) {
       console.log("error", error)
@@ -41,14 +46,18 @@ const CustomButton = () => {
   }
 
   useEffect(() => {
-    document.addEventListener("mouseup", function () {
+    document.addEventListener("mouseup", function (e) {
       const selection = window.getSelection()
       const selectedText = selection.toString()
       if (selectedText !== "") {
+        // get current mouse position
+        const { clientX, clientY } = e
+        setIconPos({ x: clientX, y: clientY })
+
         setSelectedText(selectedText)
         const range = selection.getRangeAt(0)
         const rect = range.getBoundingClientRect()
-        let { left, bottom,right } = rect 
+        let { left, bottom, right } = rect
         setWidth(right - left)
         // 计算位置的百分比
         left = (left / window.innerWidth) * 100
@@ -56,6 +65,7 @@ const CustomButton = () => {
         setPos({ x: left, y: bottom })
       } else {
         setHidden(true)
+        setIconPos({ x: -100, y: -100 })
         setPos({ x: -100, y: -100 })
       }
     })
@@ -69,33 +79,33 @@ const CustomButton = () => {
       }}>
       {/* icon */}
       <div
-        className="fixed flex items-center justify-center p-1 text-center bg-white rounded-full shadow cursor-pointer"
+        className="fixed flex items-center justify-center text-center bg-white rounded-full shadow cursor-pointer"
         style={{
-          top: `${pos.y}vh`,
-          left: `${pos.x}vw`,
+          top: `${iconPos.y}px`,
+          left: `${iconPos.x}px`,
           zIndex: 9999999999
         }}
         onClick={onTranslate}>
-        {
-          hidden && <img src={icon} className="w-5 h-5" />
-        }
+        {hidden && <img src={icon} className="w-5 h-5 p-1" />}
       </div>
       {!hidden && (
         <div
-          className="fixed flex items-center justify-end p-4 text-gray-700 bg-white rounded-md shadow min-h-8 min-w-36 text-[14px]"
+          className="fixed flex items-center p-4 text-gray-700 bg-white rounded-md shadow min-h-8 min-w-36 text-[14px]"
           style={{
             top: `${pos.y}vh`,
             left: `${pos.x}vw`,
-            width: 'max-content',
             maxWidth: `max(${width}px, ${100 - pos.x - 1}vw)`,
             zIndex: 9999999999,
             maxHeight: `calc(100vh - ${pos.y}vh - 50px)`,
-            overflowY: 'auto'
+            overflowY: "auto",
+            width: `max(${width}px, 500px)`
           }}>
           {loading ? (
             <div className="w-4 h-4 transition-all bg-blue-100 rounded-sm animation-ping"></div>
           ) : (
-            <div className="w-full" dangerouslySetInnerHTML={{ __html: result }}></div>
+            <div
+              className="w-full p-2"
+              dangerouslySetInnerHTML={{ __html: result }}></div>
           )}
         </div>
       )}

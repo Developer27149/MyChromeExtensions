@@ -1,8 +1,8 @@
 {
-  "name": "Todolist",
-  "displayName": "{{projectName}}",
+  "name": "focus_task",
+  "displayName": "Focus Task",
   "version": "0.0.1",
-  "description": "A todo list chrome extension",
+  "description": "Focus your task.",
   "author": "aaron",
   "scripts": {
     "dev": "plasmo dev",
@@ -10,10 +10,12 @@
     "package": "plasmo package"
   },
   "dependencies": {
+    "@parcel/transformer-inline-string": "^2.11.0",
     "@plasmohq/messaging": "^0.3.3",
     "@radix-ui/themes": "^1.1.2",
     "@react-spring/web": "^9.7.3",
     "clsx": "^2.0.0",
+    "focus_task": "link:",
     "jotai": "^2.4.0",
     "lodash-es": "^4.17.21",
     "plasmo": "0.74.1",
@@ -33,11 +35,9 @@
     "typescript": "5.0.4"
   },
   "manifest": {
-    "host_permissions": [
-      "https://api.github.com/"
-    ],
+    "host_permissions": [],
     "permissions": [
-      "clipboard"
+      "storage"
     ]
   }
 }
