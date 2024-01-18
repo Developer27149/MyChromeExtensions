@@ -14,15 +14,14 @@
     "@plasmohq/messaging": "^0.3.3",
     "clsx": "^2.0.0",
     "jotai": "^2.4.0",
-    "lodash-es": "^4.17.21",
     "marked": "^11.1.1",
-    "plasmo": "0.74.1",
+    "plasmo": "^0.84.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-loading-skeleton": "^3.3.1"
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@plasmohq/prettier-plugin-sort-imports": "3.6.4",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
     "@types/chrome": "0.0.237",
     "@types/node": "20.2.4",
     "@types/react": "18.2.7",
@@ -34,9 +33,7 @@
     "typescript": "5.0.4"
   },
   "manifest": {
-    "host_permissions": [
-      "https://fanyi-api.baidu.com/"
-    ],
+    "host_permissions": [],
     "permissions": [
       "storage"
     ]

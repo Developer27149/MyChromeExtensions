@@ -20,7 +20,8 @@
   },
   "devDependencies": {
     "@parcel/transformer-inline-string": "2.9.3",
-    "@plasmohq/prettier-plugin-sort-imports": "3.6.4",
+    "@repo/shared_utils": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
     "@types/chrome": "0.0.237",
     "@types/node": "20.2.4",
     "@types/react": "18.2.7",

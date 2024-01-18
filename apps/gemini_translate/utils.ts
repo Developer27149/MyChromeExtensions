@@ -27,12 +27,14 @@ export class Util {
         console.log("result:", result)
         resolve(result.response.text())
       } catch (error) {
+        console.log(error)
         reject("API INVALID")
       }
     })
   }
 
   static async getGeminiKey() {
+    console.log(chrome)
     const res = await chrome.storage.sync.get("geminiKey")
     return res.geminiKey
   }
