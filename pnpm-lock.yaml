@@ -8,18 +8,12 @@ importers:
 
   .:
     dependencies:
-      '@tanstack/react-router':
-        specifier: ^1.4.9
-        version: 1.4.9(react-dom@18.2.0)(react@18.2.0)
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
       react-icons:
         specifier: ^5.0.1
         version: 5.0.1(react@18.2.0)
-      zustand:
-        specifier: ^4.4.7
-        version: 4.4.7(react@18.2.0)
     devDependencies:
       eslint:
         specifier: ^8.56.0
@@ -36,6 +30,9 @@ importers:
       '@plasmohq/messaging':
         specifier: ^0.3.3
         version: 0.3.3(react@18.2.0)
+      '@tanstack/react-router':
+        specifier: ^1.4.9
+        version: 1.4.9(react-dom@18.2.0)(react@18.2.0)
       clsx:
         specifier: ^2.0.0
         version: 2.1.0
@@ -8811,22 +8808,3 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
-
-  /zustand@4.4.7(react@18.2.0):
-    resolution: {integrity: sha512-QFJWJMdlETcI69paJwhSMJz7PPWjVP8Sjhclxmxmxv/RYI7ZOvR5BHX+ktH0we9gTWQMxcne8q1OY8xxz604gw==}
-    engines: {node: '>=12.7.0'}
-    peerDependencies:
-      '@types/react': '>=16.8'
-      immer: '>=9.0'
-      react: '>=16.8'
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-      immer:
-        optional: true
-      react:
-        optional: true
-    dependencies:
-      react: 18.2.0
-      use-sync-external-store: 1.2.0(react@18.2.0)
-    dev: false
