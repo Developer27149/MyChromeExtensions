@@ -8,8 +8,8 @@ export default function () {
   const navigate = useNavigate()
   const [taskList, setTaskList] = useAtom(taskListAtom)
   return (
-    <div>
-      <div className="w-[250px] m-8 bg-gray-50 p-2">
+    <div className="border">
+      <div className="w-[250px] m-8 bg-gray-50 p-2 border">
         <h3 className="text-[20px] font-bold mb-1">All Tasks</h3>
         <div className="mb-8 text-sm font-bold text-blue-600">
           Total {taskList.length} task
