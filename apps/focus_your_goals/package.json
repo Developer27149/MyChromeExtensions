@@ -17,11 +17,12 @@
     "plasmo": "^0.84.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "@tanstack/react-router": "^1.4.9"
+    "@tanstack/react-router": "^1.4.9",
+    "@repo/storage": "workspace:*",
+    "@repo/shared_utils": "workspace:*"
   },
   "devDependencies": {
     "@parcel/transformer-inline-string": "2.9.3",
-    "@repo/shared_utils": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/chrome": "0.0.237",
     "@types/node": "20.2.4",
