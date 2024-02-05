@@ -17,13 +17,13 @@ const indexRoute = new Route({
 
 const detailRoute = new Route({
   getParentRoute: () => rootRoute,
-  path: "/detail",
+  path: "/history",
   component: Detail
 })
 
 const settingRoute = new Route({
   getParentRoute: () => rootRoute,
-  path: "/setting",
+  path: "/trash",
   component: Setting
 })
 

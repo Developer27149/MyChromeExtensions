@@ -5,24 +5,25 @@
   "description": "Focus your task.",
   "author": "aaron",
   "scripts": {
-    "dev": "plasmo dev",
+    "dev": "plasmo dev -v",
     "build": "plasmo build",
     "package": "plasmo package"
   },
   "dependencies": {
     "@plasmohq/messaging": "^0.3.3",
+    "@repo/shared_utils": "workspace:*",
+    "@repo/storage": "workspace:*",
+    "@tanstack/react-router": "^1.4.9",
     "clsx": "^2.0.0",
     "jotai": "^2.4.0",
     "lodash-es": "^4.17.21",
-    "plasmo": "^0.84.0",
+    "plasmo": "^0.84.2",
     "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "@tanstack/react-router": "^1.4.9",
-    "@repo/storage": "workspace:*",
-    "@repo/shared_utils": "workspace:*"
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@parcel/transformer-inline-string": "2.9.3",
+    "@plasmohq/prettier-plugin-sort-imports": "^4.0.1",
     "@repo/typescript-config": "workspace:*",
     "@types/chrome": "0.0.237",
     "@types/node": "20.2.4",

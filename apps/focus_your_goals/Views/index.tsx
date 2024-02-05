@@ -1,19 +1,13 @@
 import { Outlet } from "@tanstack/react-router"
-import { useNavigate } from "@tanstack/react-router"
-import { useEffect } from "react"
-
 import Head from "~components/Head"
 
 export default function () {
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    navigate({ to: "/" })
-  }, [])
   return (
-    <div className="p-3 bg-sky-50 w-[400px] h-[100vh] overflow-y-auto fixed top-0">
+    <div className="fixed top-0 left-0 h-[100vh] grid grid-cols-[64px_auto] min-w-[480px] bg-gray-50 text-blue border-r border-red-300">
       <Head />
-      <Outlet />
+      <div>
+        <Outlet />
+      </div>
     </div>
   )
 }
